@@ -1,0 +1,102 @@
+whoami				--> Verify currently working user
+sudo yum update -y		--> Update OS with latest patches
+clear
+
+
+pwd				--> Print working directory		/home/ec2-user
+cd 				--> Change Directory
+ls				--> List the files / Directory
+ls -a				--> List everything
+ls -ll / -la			--> Long list the properties.
+
+sudo su				--> Switch to root user from ec2-user
+
+rpm 				--> Redhat package manager
+YUM 				--> yellowdog Update Manager
+
+yum install httpd -y
+service httpd start /stop/restart/status	--> COmmands to manage httpd service
+chkconfig httpd on				--> Make httpd as a logon service
+
+cd /var/www/html/
+
+touch index.html		--> Plain / empty 0 byte file
+
+mkdir				--> Make Directory / Create a folder
+
+vim index.html			--> TO create a index.html webpage
+
+
+VIM Editor:
+
+vim index.html
+
+I	--> INSERT Mode
+ESC	--> To comeout from Insert mode
+:wq	--> To Write the data and Quit		(Save and Close)
+:q!	--> Quit without saving the data	(Don't save and close)
+
+
+lsblk		--> To display block based devices
+df -Th		--> Lists the detailed information
+
+/dev		--> Location where all devices stores
+
+mkfs		--> Make file system
+
+
+Create a volume and associate with your ec2 instance
+Verify the volume status by giving "lsblk"		(/dev/xvd*)
+
+Write a file system to volume 		mkfs -t xfs /dev/xvd*
+
+Create a directory 			mkdir Testvolume
+Mount your volume to a directory 	mount /dev/xvd* Testvolume
+
+mount -all
+
+TO make this mount a permanent mount, get an entry from mtab and add it in fstab.
+
+cat /etc/mtab		
+
+Example : 
+/dev/xvdf /home/ec2-user/newvolume1 xfs rw,relatime,attr2,inode64,noquota 0 0	
+
+vim /etc/fstab		--> add the entry
+
+mount -all
+
+
+____________________________________________________________________________________
+
+Task : Install httpd and delive the webpage using 8080 port number.. 
+
+Task : Configure http to https redirection using virtual host..
+
+
+Task: Install Nginix and deliver a webpage...
+
+
+
+Task : Create a volume and Associtae to Linux instance and make it available always. 
+
+Task 2 : Extend the task 1 volume with 1 more GB. 
+
+
+https://aws.amazon.com/premiumsupport/knowledge-center/extend-linux-file-system/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+

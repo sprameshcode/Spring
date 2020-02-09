@@ -1,0 +1,409 @@
+EC2 : Elastic Compute Cloud : 
+
+	Elastic	CPU		Cloud
+		Storage
+		Memory
+		Applications/software
+		Network
+		GPU
+
+
+Traditional Scenario : Server to test your application : 
+
+Application : 	100 customers --> 1M customers (We will look for 1M cus Configuration)
+
+--> 100% upfront		ROI 
+
+EC2: 100 Cus : t2.medium --> t3.4xlarge -----> Servers+ELB --> 100s servers --> 10 sers
+
+
+Scaling :
+Vertical Scaling : 
+Horizontal scaling : 
+
+Instance = Server
+
+
+On-Demand ec2 instance : no specific workloads / usecases, If you want to test your application in AWS.. First time usage on aws.. 
+
+Pricing : /hr and /sec (With min of 10 sec)
+
+
+Reserved Instances (RI) : Predictable workloads, stable workloads, long term runs on aws..  Duration : 1 Year / 3 Years.. 
+
+Standard RI : We cannot upgrade the selected configuration within the duration. 
+Convertable RI : We can change/upgrade the configuration. 
+Scheduled RI : repeated/scheduled intervals, we can run our ec2 instance.
+
+Pricing : Full Upfront : Pay everything while purchasing instance. 
+	  Partial Upfront : pay 30-50% while purchasing, remaining amount pay monthly 			    basis (but with reduced hourly price)
+	  No Upfront : No need to pay anything, but most of the times cost same as on-			demand instances.
+
+AWS Marketplace : We can register as a seller and sell our products/applications/instances.
+
+
+Spot Instance: When we have flexible start/stop options for our instances.. If you need high configuration servers ar lowest cost for specific durations.. 
+
+--> We need to bid our ouwn price against aws pricing. If bid price is same/greater than as aws pricing we will get an ec2 instance. 
+ 
+--> Pricing history
+
+--> We can create a fleet requets.
+
+3 hr 35 Min 20 Sec --> Price increased and AWS Terminated your isnatccne : 3 Hrs.. 
+3 hr 35 Min 20 Sec --> Price not increased and you Terminated inatccne : full duration 
+								3 hr 35 Min 20 Sec
+
+
+Step 1 : Choose an AMI (Amazon Machene Image) : Choose your required OS. 
+
+An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
+
+
+Step 2 : Step 2: Choose an Instance Type
+t2.micro (1vCPU, 1 RAM) 
+
+General Purpose : t2, t3, a1, m4, m5, m5d
+Compute optimised : c4, c5, c5d
+GPU : P, G
+Memory optimised: r4, r5, r5d, x1e, z1
+Storage optimised: d2, i2, i3
+
+
+Step 3: Additional configurations
+
+Shutdown behavior : STOP
+Enable termination protection : YES
+
+
+Step 4: Add Storage
+Root : 30 gb
+
+Step 5 : Add tags
+
+We can define max of 50 tags/ instance.
+
+Step 6: COnfiguyre the Security group.
+
+Security group: Firewall at our instance level. 
+
+Windows : RDP : Remote Desktop Protocol : 3389	: Remote desktop connection
+Linux : SSH : Secure shell : 22			: putty / mutty/ moxterm
+web : http : 80					: browser
+web : https : 443				: browser
+Db : Mysql : 3306				: mysql workbench
+DB : mssql : 1433				: ssms SQL server management studio
+
+Source : 0.0.0.0/0  (Anywhere)
+
+Open Run --> mstsc --> enter
+
+Step 7: Create a new Keypair and get connected to your ec2 instance.
+
+
+
+Task : Launch a Windows ec2 instance with a keypair. Get connected to instance with the password. 
+
+Change the password at OS level, and signout.. Login back to your ec2 instance using Keypair generated password.. try to login with newly setup password.
+
+
+Task 2: Create a user in Windows server and provide him "Local Admin Rights" and "Remote connection permissions" .
+
+Connect to your ec2 instance as newly created user.
+
+________________________________________________________________________________________
+D:2/1/2020
+
+Security Groups : 
+
+Security groups are stateful. We always need to takes care about inbound rules.
+By default, all traffic is allowed in outbound rules.
+
+
+Inbound : Traffic delivering from ec2 instance.
+Outbound : Traffic into your ec2 instance. 
+
+
+EIP : Elastic IP Address : NO FREE TIER ELIGINILITY : Dedicated IP allocated to pour aws environment. We can associate this IP to any resource running in same region.
+
+ENI : Elastic Network Interface : We can create an associate multiple NICs to an ec2 instance. But Instance and NIC should be in Same AZ (Availability Zone).
+
+
+System Status Checks : These checks monitor the AWS systems required to use this instance and ensure they are functioning properly.
+
+Instance Status check : These checks monitor your software and network configuration for this instance.
+
+
+
+Task : Open required ports to ping your ec2 instance. 
+Task 2: Install IIS and deliver your website using public ip your ec2 instance. 
+
+Task 3 : Associate multiple ENI to an ec2 instance..  Launch a new ec2 instance, and try to access task 2 outputs using Both the private IP addresses.
+
+Task 4 : Limit the Task 3 output to only newly launched ec2 instance public Ip address using security groups.
+
+________________________________________________________________________________________
+
+D: 2/3/2020
+
+
+Root Device Types : Storage options for our ec2 instances. 
+--> Instance Store Volumes
+--> EBS VOlumes (Elastic Block Storage)
+
+Instance Store Volumes : Also called as Ephemeral Storages. 
+--> THese will not support STOP/START options. 
+--> If underlying failure happens, We will loss all the data.
+--> We can reboot, if required. We don't loss any data for reboot. 
+--> We have only specific instance types to run Instance store volumes. 
+--> 3rd party tools to move Instance store data to EBS volumes Ex: NetApp... 
+
+EBS Volumes : 
+--> 99.999 % Availability
+--> 0.01 - 0.02 Annual Failure value.
+
+SSD : gp2, io1
+HDD : st1, sc1
+Magnetic : Magnetic / standard
+
+root volume (runs OS c:/ or /) : gp2, io1 and magnetic
+Additional volumes : st1, sc1 along with root volumes.. 
+
+We measure storage performance using IOPS (Input and Output operations Per Second)
+
+General Purpose SSD (gp2) : Min 1 GB, Max 16 TB.. Max IOPS : 16,000 only.. 
+			1 GB = 3 IOPS , with min of 100... 3000 Burstanble IOPS count..
+			Root volumes, Stable/regular workloads, small databases.. 
+
+
+Provisioned IOPS SSD (io1) : Min 4 GB, Max 16 TB.. Max IOPS : 64000 only(Only Nitro).. 
+	Default IOPS ratio : 1 GB = 50 IOPS.. We can specify required IOPS count.. 
+	NOSQL databases, Production databases, If we need spcific iops count.. 
+
+
+Magnetic (standard) : Min 1 GB, Max 1 TB.. IOPS N/A.. Less Freq accessed data, Chepest storage.. 
+
+Throughput Optimised HDD (st1):  Min 500 GB, Max 16 TB.. IOPS N/A (500 IOPS), Big data, data warehouses, log processing
+
+COld HDD (SC1) : Min 500 GB, Max 16 TB.. IOPS N/A (250 IOPS).. Colder data requiring fewer scans per day...  
+
+http://aws.amazon.com/ebs
+
+
+diskmgmt.msc
+
+1 GB Volume --> Create a SS --> Create a volume for another AZ --> Volume in Another AZ 
+1 GB Volume --> Create a SS --> Copy SS to ANother region --> Create a volume in AZ
+1 GB Volume --> Create a SS --> Share it with Another AWS Account user --> Create avolume
+1 GB Volume --> Create a SS --> Make it public --> Whoever knows SS ID, they can create 
+
+Snapshots : 
+--> Backup copies of EBS volumes.
+--> SNapshots stores in S3 platform. (Not your S3 buckets)
+--> Snapshots runs with incremental backup mechanism.
+--> We can automate Snapshot creation using DLM (Data Lifecycle Manager) option. 
+
+
+DLM : Data Lifecycle Manager : We can schedule Instance / volume snapshots automatically.
+Need to define the appropriate TAGS.
+
+
+
+Task : Configure DLM to create a snapshot for every 2 Hours for a 1gb volume. 
+
+Task 2 : Launch multiple instance in multiple AZs.. And perform attach volumes.  
+
+
+______________________________________________________________________________________
+
+D: 2/4/2020
+
+
+Windows EC2 Instance --> IIS / Change the password --> GoldenAMI 
+
+
+Linux EC2 Instance : 
+____________________
+
+Step 1 : Choose an AMI (Amazon2 Linux AMI)
+
+Step 2 : Choose an Instance (t2.micro)
+
+Step 3 : Additional configurations
+
+Step 4 : Choose storage (GP2/Magnetic : 8/10 GB)
+
+Step 5 : Add Tags (Max 50 Tags/Instance)
+
+Step 6 : COnfigure the Security Groups 
+	SSH --> Secure Shell --> Port 22 --> SOurce : 0.0.0.0/0 / MyIP / Custom
+
+Step 7 : create a Keypair. 
+
+	--> Putty : Supports ppk file format (Putty Private Key) : .ppk
+	--> Wondows COmmand : Install OpenSSH --> .PEM File
+	--> GIT : Use Git Terminal --> .PEM file
+	--> MobaXterm / Mutty : .ppk
+
+
+	PUttyGen --> Tool to convert .PEM file to .ppk file.. / We can even create a new 		     /own ppk files
+
+ putty.org
+
+
+WIndows with openssh enable / Linux OS / Mac OS: 
+
+ssh -i Keypair.pem username@publicip
+
+chmod 400 XXX.Pem
+
+
+_____________________________________________________________________________________
+
+Task 1 : How to recover your Windows AMI ec2 instance, if you change default password and unable to retive the password. 
+(You still have the associated Keypair in you local laptop and AWS)
+
+
+Task 2 : How to recover your Windows AMI ec2 instance, if you change default password and unable to retive the password. 
+(You have deleted the keypair from your local laptop and aws)
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ResettingAdminPassword_EC2Config.html
+
+______________________________________________________________________________________
+
+D: 2/5/2020
+
+Puttygen
+Keygen
+
+
+_____________________________________________________________________________________
+
+D: 2/6/2020
+
+Meta-Data : 
+
+http://169.254.169.254/latest/meta-data/
+
+ami-id
+ami-launch-index
+ami-manifest-path
+block-device-mapping/
+events/
+hostname
+identity-credentials/
+instance-action
+instance-id
+instance-type
+local-hostname
+local-ipv4
+mac
+metrics/
+network/
+placement/
+profile
+public-hostname
+public-ipv4
+public-keys/
+reservation-id
+security-groups
+services/
+
+
+
+User-Data : BSS : Excutes when instance launched for the first time only. 
+
+http://169.254.169.254/latest/user-data
+
+
+use "runcommand" to execute commands on running ec2 instances. 
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo "<h1>This is a userdata webpage</h1>" > /var/www/html/index.html
+
+
+Cloudwatch: Service to monitor AWS resources..  
+
+EC2 Instance: 
+	--> Basic Monitoring : 5 Minutes Interval (Free)
+	--> Detailed Monitoring / Enhanced Monitoring : 1 Min (Cost us)
+
+Default Metrics : We can monitor  CPU, Network, Disk and Status checks... We cannot monitor Memory utilisation using Default MEtrics.. 
+
+If you want to monitor Memory utilisation of an ec2 instance, we need to enable custom Metrics and configure the CloudWatch Unified Agent in our ec2 instance.. 
+
+Using cloudwatch unified agent we can send our custom Application logs to AWS.. 
+
+
+______________________________________________________________________________________
+
+D: 02/07/2020
+
+
+Cloudwatch Events
+
+ELB : 
+
+--> Classic ELB (Previous Generation): for HTTP, HTTPS, and TCP
+--> Application ELB : http and https 
+--> Network ELB : tcp, UDP, tls
+
+
+Logs on ELB : AccessLogs : Stores logs in S3 buckets
+
+
+EFS : Elastic File System : 
+
+--> It supports NFSv4.1
+--> Supports only Linux OS
+--> We can mount this EFS to 10s, 100s and 1000s of ec2 instances also.
+--> It's a centralised location to store files/run applications / clustering.. 
+--> We need to takes care file level permissions, there is no option to mange permissions     at EFS level.
+
+--> We can mount EFS to Same VPC instances.
+--> We can mount EFS to Another (Region) VPC instances (VPC peering must be enabled).
+--> We can mount EFS to On-Prem resources also.
+
+
+Task : COnfigure EFS and mount Filesystem while launching ec2 instance to desired path.
+
+Task 2 : Launch multiple ec2 instances, in multiple AZs.. make it as a webserver and mount EFS to Public DocumentRoot path. 
+	and verify, both instances are deliverying same webpage also modifications.
+	perform Permanent mount.
+
+
+Task 3 : Configure Application ELB and run Task2 instances on top of ELB.
+
+Create a new instance make it as a webserver, Create a New Target Group (8080), and deliver new instance via  a newTG with 8080 port.
+
+Task 4 : Launch and configure an ec2 instance, and create a new TG.. 
+
+configure Weighted Routing on ELB with all the three Target groups.. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

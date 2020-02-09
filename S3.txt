@@ -1,0 +1,261 @@
+S3 : Simple Storage Service : 
+
+--> Object based Storage : store the flat file : mp3,mp4,video,images... 
+
+Block based Storage : Install the OS : EBS, Instance Store
+Network attached storage : Storage over the network : EFS , FSx
+
+
+--> Unlimited storage available
+--> S3 is a global platform, DOesn't required any region selection.
+--> Softlimit : 100 buckets
+--> Buckets : Dir/Folder
+--> We store all the objects in S3 buckets.
+--> We need to choose a region when creating a bucket.
+--> Min Obj Size : 0 bytes, Max Obj size : 5 TB
+Bucket name : Must be unique across the globe. (should comply with DNS naming standards)
+--> Min CHar : 3, Max Char: 63
+--> Should not contains any Uppercase letter/ 
+--> should not resemble IP address format
+--> Should not start with . , should not end with . , No adjesent ..
+
+--> Pay-as-you-go
+--> No Pre-provisioning required
+
+100 gb data
+
+10gb Frequently accessed, Data should be available immediately
+10gb lessFreq Accesed data, Data should be available immediately
+20gb Non-Mission critical data, reprodusable data.. 
+20gb Archieve, not required immediately
+
+S3-Standard : Frequently accessed, Default storage on s3 platform. 
+99.99% Avia, 99.999999999% Durability
+
+Standard-IA / OneZone-IA : lessFreq Accesed data, Data should be available immediately
+
+GLacier / Glacier Deep Archieve : To archieve data for lobger durations.. Data will not be available immediately.. We need to retive the data to access.
+
+RRS : Reduced Redundancy Storage : Durability : 99.99%, Nonmission critical data, easily reprodusable data.. 
+
+Intelligent tier : We can choose if we are not sure about our access patterns.
+
+
+https://s3.region.amazonaws.com/bucketname/objectname
+
+VirtualPath:
+https://bucketname.s3.ap-south-1.amazonaws.com/objectname
+https://bucketname.s3.amazonaws.com/objectname
+
+
+Free Tier : 
+
+--> 5 gb S3 Standard storage
+--> 2000 PUT Requests and 20,000 GET requests
+--> Data transfer within region is free.. 
+
+
+Versioning : 
+____________
+
+--> Backup option on our s3 bucket.
+--> Once enabled, cannot disable, We can suspend if required.
+--> If we delete Latest version (Version : Hide), We will get the Delete marker, 
+--> Delete the "Delete marker" to get the Latest version back.
+--> Set "version : Show" , delete any of the object version. We will not get Delete Marker.
+
+D: 1/28/2020
+
+PHD : Personal Health Dashboard
+
+
+CRR and SRR : (Practice with same region bucket)
+____________
+
+--> Same Region replication is newly introduced feature. Please correct this in material.
+--> Versioning must be enabled on source bucket and destination bucket.
+
+LCR :
+_____
+--> Refer to the diagram
+
+Static website hosting
+______________________
+
+--> Your Domain = Bucket name
+
+http://bucketname.s3-website.region.amazonaws.com
+
+2XX : Success
+3XX : Redirection error
+4XX : Client Side error
+5XX : Server Side error
+
+_____________________
+
+Object Lock:
+--> Versioning must be enabled.
+--> We can enable this feature while creating the bucket only. (If you want to enable for an existing bucket, we need to contact AWS support). 
+
+Governance mode can be disabled by AWS accounts that have specific IAM permissions.
+Compliance mode cannot be disabled by any user, including the root account.
+
+
+_____________________
+
+Server access log : Enable logs on s3 bucket.
+
+Tags: COmbination of Key and Value pairs. We can give our own metadata by using tags.
+
+______________________________________________________________________________________
+
+D: 1/29/2020
+
+Encryption : 
+
+--> In-Transit Encryption
+	--> SSL / TLS 
+
+--> Server Side Encryption (At Rest Encryption)
+	--> SSE - S3 (Free Tier)
+	--> SSE - KMS (Key Managent Service)  	(No Freetier)
+	--> SSE - C (Customer Managed)		(No Freetier)  (External)
+
+--> Client Side encryption
+
+	--> Encrypting data in local environment, before uploading to s3 bucket.
+	--> AWS SDK Tools to perform CSE
+
+
+KMS : Select Symmentric/Assymentric --> KMS / External /HSM --> KMS --> Key Administrator 	--> Key Usage Permissions --> Review and Create
+
+
+________________________________________________________________________________________
+
+
+Transfer Acceleration : ENable to use Edgelocations to perform data transfers to our s3 buckets. 
+--> No Free tier
+--> Compare the speed before enable this feature.
+
+__________
+
+Events: 
+
+--> SNS (Simple Notification Service)	--> 
+--> SQS (Simple Queue Service)
+--> Lambda
+
+
+Application Integration  --> SNS --> 
+
+
+
+Task: 
+User1, Need access only one bucket1. If user1 trying to access any other buckets he should end up with an error.
+
+Task2: Configure events on s3 bucket.
+
+Task3: Read S3 storage comparison chart and FAQs on s3.
+
+
+______________________________________________________________________________________
+
+D: 1/30/2020
+
+Bulk retrieval : Typically within 5-12 hours
+
+Standard retrieval : Typically within 3 - 5 hours
+
+Expedited retrieval : Typically within 1 - 5 minutes when retrieving less than 250MB
+
+___________________
+
+
+3500 Write/Sec
+5,500 Read/Sec
+
+--> Design a valid/unique prefix for your s3 data to get optimised performance.
+
+_________________
+
+
+IMPORT/EXPORT: 
+
+
+Snowball : 50/80 TB, 200$/Job, 10 Days free, 15$/Day.. 
+Snowball Edge : 100 TB, Rackmountable, 250$/Job, 10 Days free, 20$/Day.. 
+Snowmobile : PB scale container.. 
+
+
+By using, Client Manifest file and unlock code, we can unlock this device.
+Configure a local network IP address. 
+Install Snowball/edge client and transfer all the data.
+
+
+AWS Direct Connect : Dedicated connectivity between our On-Premise and AWS environments. 
+
+
+_________________________________________________________________________________________
+
+
+Managing s3 with 3rd party applications: 
+
+--> S3Browser
+--> Cloudberry explorer for s3
+--> cyberduck
+--> WinSCP 
+
+
+Task: Explore with S3Browser
+Task: User1, Need access only one bucket1. If user1 trying to access any other buckets he should end up with an error.
+
+user 1 --> user1bucket	--> Give a specific URL to user 1 to access his own bucket
+user 2 --> user2bucket
+
+
+_____________________________________________________________________________________
+
+
+EC2 : Elastic Compute Cloud : 
+
+	Elastic	CPU		Cloud
+		Storage
+		Memory
+		Applications/software
+		Network
+		GPU
+
+
+Traditional Scenario : Server to test your application : 
+
+Application : 	100 customers --> 1M customers (We will look for 1M cus Configuration)
+
+--> 100% upfront		ROI 
+
+EC2: 100 Cus : t2.medium --> t3.4xlarge -----> Servers+ELB --> 100s servers --> 10 sers
+
+
+Scaling :
+Vertical Scaling : 
+Horizontal scaling : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

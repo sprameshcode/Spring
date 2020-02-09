@@ -1,0 +1,374 @@
+
+NIST : 
+
+Linux
+1 vcpu		--> 128 cpu
+1 ram		--> 4 TB RAM
+8 gb hdd	--> 16 TB HDD
+
+_______________________________________
+Traditional / On-premise : Quotation / 3-4 weeks / 100% upfront PO / O/s --> UAT --> Prod
+
+3 Months
+
+Server rack
+Network rack
+cooling
+physical security
+network
+
+
+Analysis : 
+
+
+Tenancy : 
+
+Dedicated : H/w dedicatedly available to one customer
+Shared : Multiple customers uses the same hardware.
+___________________
+
+EC2 : Run the Servers
+RDS : Databases
+VPC : Network
+
+
+12 MOnths Free tier
+
+Free Tier : 
+
+S3 : 5 gb / month
+
+0 bytes
+
+Unlimited
+
+ec2 : 750 hrs/ month t2.micro
+
+RDS : 750 hrs/month db.t2.micro
+
+
+Java 
+.net
+Technical support
+Storage admin
+Freshers
+Middleware admin
+DW 
+
+
+AWS : Infrastructure Provider :  .net/java/php/puthon/perl/ruby... 
+
+AWS Developer : AWS + java/python/perl/go ... 
+
+AWS Engineer / SysOps Administrator / Cloud Admin: 
+
+storage admin : s3
+network admin : VPC
+DBA : RDS/Dynamodb
+DW : Redshift
+Server : ec2
+
+AWS SA : Propose solutions
+
+AWS Security Engineer : Security / Audits 
+Bigdata / IoT / Ml/ai : 
+
+Support roles : Tech support 
+
+DevOps : Infra management tools : Jenkins/git/chef/puppet/ansible/maven... 
+
+Prog: Not required
+Linux : Yes.. / Register online.. No cost
+DevOps : Free course (jenkins/git/maven)
+
+___________________________________________________________________________
+
+Deployement Models :
+
+--> Public Cloud : Open for all/ AWS,Azure,GCP....  Maintenance : Service Provider
+
+--> Private Cloud : Infra will be available to One Organisation..  Main: You / 3rd Party
+			Designed and operated by your own Org / 3rd party..
+
+--> Hybrid CLoud : One or more Cloud combinations.. Public + Public.. Public + Private..
+
+web servers Cloud , Database Servers On-Prem (Credit card).. 
+
+--> Community Cloud : Group of Organisation.. Infra and Group will use.. 
+
+____________________________________________________________________________
+
+
+Service Models : 
+
+
+Traditional / On-Premise : 
+
+
+
+Application		--> SA
+Data			
+Runtime			--> Application Admins		
+Middleware		--> 
+Operating Systems	--> System Admins
+Virtualisation		--> Vmware/Hyper-v/xen/KVM
+Servers			--> System Engineers / Syntel Admin
+Database		--> DBA
+Storage			--> SAN/NAS/Obj Admin
+Network			--> Network Admins
+
+
+ISP
+Location
+Cooling
+Security
+
+
+
+SaaS : Software as a Service : Lightsail
+PaaS : Platform as a Service : ElasticBenastalk
+IaaS : Infrastructure as a Service : Ec2
+
+Requirement : A Website, Which is accesable to everyone..  
+
+
+
+
+AWS = Instance = Server
+Azure = Azure VM = Server
+GCP = Engine = Server
+On-Prem = Box 
+
+
+WAF : 
+Cloudfront : DDoS 
+Geolocation Restrictions : 
+AWS Shield : 
+AWS Firewall Manager : 
+
+
+
+User Management		: IAM
+Storage Management	: S3
+COmpute (HA/Scaling)	: EC2
+Hosting			: R53
+Databases		: RDS
+Network			: VPC
+Application Service	: 
+Security Service	: WAF, Cloudfront
+Migration Services 
+
+AWS : Amazon Web Services : 
+
+13 Years : March 2006 : AWS CEO Andy Jessy : 
+
+AWS Re:Invent : AWS Annual Conference
+
+Chris Pinkman and Benjamin Black : SQS (Simple Queue Service) : Decoupled application : Developed Whitepapers : Selling SQS as a Service 
+
+
+AWS : Azure : GCP 
+
+
+AWS Global Infrastructure : 
+___________________________
+
+Regions : Geographical location / Physical location : 22 Regions : No Resources
+
+Mumbai : ap-south-1
+N Virginia : us-east-1
+
+
+18 Regions : General Public
+2 : US Gov Cloud : You need to Signup for USGov : FIPPS, FedRAMP, PCI DSS..  
+2 : China : amazonaws.cn : Request for an Account : Nixia & Bejing : 
+Availability Zone : Data Centre or combination of Multiple DCs : 69 AZs.. 
+
+Every region contains Min of 3 AZs... 
+
+Mumbai : 3 Azs: ap-south-1a, ap-south-1b, ap-south-1c
+N V : 6 AZs : us-east-1a, us-east-1b --- us-east-1f
+
+
+PoP / Edge Locations : CDN (Content Delivery Network) Endpoints : Cached Locations : CloudFront : 100+ Edge locations 
+
+Mumbai : New Delhi, Hyderabad, Chennai, Bangalore
+
+__________________________________________________________________________________
+
+1/23/2020
+
+Step 1 : 
+https://aws.amazon.com/free
+
+Email Address : root					
+Password and Confirm password : Strong Password
+Account Name : 
+
+Step 2 : 
+Contact Information
+--> Personal Account					 
+--> Professional / Company Account
+Address
+
+
+Step 3 :
+Payment Information
+
+--> Visa / Master Card / AMEX (CC/DC)			
+--> 2 INR / 1 $ (Refunds back with in 72 Hrs)
+
+Step 4 :
+Verify your Identity
+
+--> Email / Phone Number
+--> ENter capcha and Phone Number
+--> Answer the IVR call, and Enter the 4 Digit pin generated on your screen.
+
+Step 5 :
+Choose the support plan   : Getting assistance from AWS
+
+1. Account and Billing Related		: Free for All support plans.. 24x7 Support.. 
+2. Service Limit increase 		: Free for All support plans.. 24x7 Support..
+
+ec2 : Servers : 20 running servers 
+VPC : Networks : 5 VPCs
+SES : 200 EMails/Day
+S3 : 100 buckets : 
+
+3. Technical Assistance			: Depends on the support plan we choose.. 
+
+Basic Support : 1, 2 Free.. 24x7 Support.. 3: Not available.. Pricing : Free
+Trusted Advisor checks : 7 Core area checks..
+
+Developer: 3: 12-24 Local business hours. One user can raise a ticket.. Price : 29$/M
+Trusted Advisor checks : 7 Core area checks..
+
+Business : 3: 1 Hour.. Any user can raise ticket.. Price : 100$/M
+Trusted Advisor checks : all checks..
+
+Enterprise : 3: 15 Min.. Any user can raise ticket.. Dedicated TAM (Technical Account Manager).. AWS Sr SA.. AWS Concierge.. training.. AWS Shield Advanced.. Price: 15k$/Month
+Trusted Advisor checks : all checks..
+
+
+_________________________________________________________________________________________
+
+Email Id & 10 digit password.. 
+
+--> Enable MFA for root user.
+
+--> Hardware MFA Device : 
+--> VIrtual MFA Device : We can use our smartphone : Google Authenticator, Authy 2 factor
+--> U2B key : 
+
+
+--> IAM Users will not get any access to billing dashboard.
+
+
+IAM : Identity and Access Management : We can manage users and their level of access on our AWS Account. 
+
+root Email and Password : 
+
+Manager : Full Access including payments : root 
+TL : Administrator Access excluding payments :  
+Storage Admin : S3 : S3FullAccess : 
+System Engineer : EC2 : EC2FullAccess : 
+
+Policies : Document contains set of permissions on our AWS Accounts, Written in JSON format.
+
+
+IAM User Creation :
+
+1. Set user details i.e; Username
+
+2. Choose your Access Type
+
+--> AWS Management Console Access : GUI : Browser : UN, Pwd and Sign-In URL
+--> Programatic Access : CLI : sdk, api, 3rd party app integrations : AccessKeyID and                                                                       SecretAccessKey
+3. Set Permissions
+
+Manage using Groups	: S3AdminGroups --> Add this user to group
+Copy Existing users permissions
+Attach polocy directly to user
+
+
+Task : Create your AWS Account. 
+
+Task 1 : ENable MFA on your root account. 
+
+Task 2 : Create an IAM user with S3FullAccess and Test his level of access on account.
+
+Task 3 : Create an IAM User with "AdministratorAccess" and verify his access on account including Billing dashboard.
+
+Task 4 : Provide Billing access to task 3 IAM User. (use same user for all future sessions) 
+
+
+_______________________________________________________________________________________
+
+D: 1/25/2020
+
+AWS Managed Policies : ec2fullaccess
+Job Function Policies : DBA
+Customer Mangaed Policies : 
+
+
+AdministratorAccess : Provides full access to AWS services and resources.
+PowerUserAccess : Provides full access to AWS services and resources, but does not allow management of Users and groups.
+ReadOnlyAccess : Provides read-only access to AWS services and resources.
+AWSDenyAll : Deny all access
+
+
+User 1 : ec2 + s3  : Implicit Allow
+
+User 2 : AdministratorAccess  + DenyS3 : 
+
+	Group : AdminAccess
+User3 : AdminGroup + AdministratorAccess + S3FullAccess + s3Deny  
+
+
+Credentials Report : 
+
+CloudTrail : logging service on our AWS Account. It logs all users activities. 
+
+--> IAM does not require region selection. IAM is a Global resource, These resources are available in all the Regions.
+
+
+
+Task : Create an IAM User with AdministratorAccess, and Add S3Deny and verify his level of access on s3 platform and other services.
+
+Task 2 : Add Task1 user to multiple groups, and use the policysimulator to understand the policy esclations.
+
+
+Task 3 : Create a user with "AdministratorAccess", Enable billing access for this user, and use same user throughout our course. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
